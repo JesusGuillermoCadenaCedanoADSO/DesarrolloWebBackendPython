@@ -30,13 +30,39 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'pages:pages' %}">Páginas</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profiles:list' %}">Perfiles</a>
+              </li>
             </ul>
             <ul class="navbar-nav">
+              {% if not request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="/admin/">
-                  {% if request.user.is_staff %}Admin{% else %}Acceder{% endif %}
+                <a class="nav-link" href="{% url 'login' %}">Acceder
+                  {% comment %} {% if request.user.is_staff %}Admin{% else %}Acceder{% endif %} {% endcomment %}
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">Registro
+                  {% comment %} {% if request.user.is_staff %}Admin{% else %}Acceder{% endif %} {% endcomment %}
+                </a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'messenger:list' %}">Mensajes
+                  {% comment %} {% if request.user.is_staff %}Admin{% else %}Acceder{% endif %} {% endcomment %}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Perfil
+                  {% comment %} {% if request.user.is_staff %}Admin{% else %}Acceder{% endif %} {% endcomment %}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Salir
+                  {% comment %} {% if request.user.is_staff %}Admin{% else %}Acceder{% endif %} {% endcomment %}
+                </a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>

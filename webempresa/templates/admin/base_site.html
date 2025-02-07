@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% comment %} bloque de estilo añadido {% endcomment %}
+{% block extrastyle %}
+  <style>
+    #header {background: #4c2d1b;}
+  </style>  
+{% endblock extrastyle %}
+
+
+{% block branding %}
+<h1 id="site-name">
+  <a href="{% url 'admin:index' %}">
+  {% comment %} {{ site_header|default:_('Django administration') }} {% endcomment %}
+    <img src="{% static 'logo.png' %}" height="40px"/>
+  </a></h1>
+{% comment %} {% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %} {% endcomment %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
